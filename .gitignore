@@ -21,3 +21,31 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/buildSrc/.gradle/noVersion/buildSrc.lock
+/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+/buildSrc/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+/.gradle/buildOutputCleanup/cache.properties
+/buildSrc/.gradle/buildOutputCleanup/cache.properties
+/.gradle/7.4.1/checksums/checksums.lock
+/.gradle/7.4.1/dependencies-accessors/dependencies-accessors.lock
+/.gradle/7.4.1/executionHistory/executionHistory.bin
+/buildSrc/.gradle/7.4.1/executionHistory/executionHistory.bin
+/.gradle/7.4.1/executionHistory/executionHistory.lock
+/buildSrc/.gradle/7.4.1/executionHistory/executionHistory.lock
+/.gradle/7.4.1/fileHashes/fileHashes.bin
+/.gradle/7.4.1/fileHashes/fileHashes.lock
+/.gradle/7.4.1/dependencies-accessors/gc.properties
+/.gradle/7.4.1/gc.properties
+/.gradle/vcs-1/gc.properties
+/.gradle/7.4.1/fileChanges/last-build.bin
+/L01-gradle/build/reports/checkstyle/main.html
+/buildSrc/build/tmp/jar/MANIFEST.MF
+/L01-gradle/build/tmp/jar/MANIFEST.MF
+/L01-gradle/build/tmp/shadowJar/MANIFEST.MF
+/.idea/modules/otusJava.buildSrc.main.iml
+/.gradle/buildOutputCleanup/outputFiles.bin
+/buildSrc/.gradle/buildOutputCleanup/outputFiles.bin
+/buildSrc/build/tmp/compileJava/previous-compilation-data.bin
+/L01-gradle/build/tmp/compileJava/previous-compilation-data.bin
+/.gradle/7.4.1/fileHashes/resourceHashesCache.bin
+/.idea/workspace.xml

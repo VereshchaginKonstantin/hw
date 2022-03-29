@@ -25,6 +25,10 @@ tasks.withType(Checkstyle) {
         xml.required = false
         html.required = true
     }
+    checkstyle {
+        ignoreFailures = false
+        maxWarnings = 0
+    }
 }
 
 tasks.build.dependsOn tasks.check

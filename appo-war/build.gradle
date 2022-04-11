@@ -45,3 +45,4 @@ test {
 }
 
 tasks.build.dependsOn tasks.check
+tasks.build.dependsOn tasks.test

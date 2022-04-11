@@ -1,7 +1,6 @@
-package ru.otus.tests;
+package ru.vkn.appowar;
 
 import org.junit.jupiter.api.Test;
-import ru.otus.FightEngine;
 
 class FightEngineTest {
 

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 class FightEngineTest {
 
     @Test
-    void fight() throws Exception {
+    void fight() {
         var eng = new FightEngine();
         eng.fight();
     }

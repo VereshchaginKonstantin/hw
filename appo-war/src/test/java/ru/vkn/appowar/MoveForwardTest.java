@@ -20,7 +20,6 @@ class MoveForwardTest {
           posititon = mock(Posititon.class); // init position as 3
           technicalUnitSource = mock(TacticalUnit.class);
           technicalUnitTarget = mock(TacticalUnit.class);
-
     }
 
     @Test

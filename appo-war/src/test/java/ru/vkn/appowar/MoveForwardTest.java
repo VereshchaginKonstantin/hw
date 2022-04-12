@@ -29,7 +29,7 @@ class MoveForwardTest {
                 technicalUnitSource,
                 posititon);
 
-        //  then
+        // then
         // Сблизить ТС 1 с другими ТС на единицу
         // Оставить остальные ТС на прежнем расстоянии
         Mockito.verify(posititon, Mockito.times(1))

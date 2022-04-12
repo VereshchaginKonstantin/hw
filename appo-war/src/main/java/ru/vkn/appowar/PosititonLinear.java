@@ -34,7 +34,15 @@ public class PosititonLinear implements Posititon {
     }
 
     @Override
-    public void moveForward(TacticalUnit technicalUnitSource) {
+    public void moveForward(TacticalUnit technicalUnit) {
+        var user = technicalUnit.getUser();
+        if (userSecond.equals(user)) {
+            positions.put(technicalUnit,
+                    positions.get(technicalUnit) + 1);
+        } else {
+            positions.put(technicalUnit,
+                    positions.get(technicalUnit) - 1);
+        }
     }
 
     @Override

@@ -38,10 +38,46 @@ class PosititonTest {
     }
 
     @Test
+    void move1() {
+        posititon.add(technicalUnitSource);
+        posititon.add(technicalUnitTarget);
+        posititon.moveForward(technicalUnitSource);
+        assertThat(posititon.getDistance(
+                technicalUnitSource,
+                technicalUnitTarget
+        ))
+                .isEqualTo(9L);
+    }
+
+    @Test
+    void move2() {
+        posititon.add(technicalUnitSource);
+        posititon.add(technicalUnitTarget);
+        posititon.moveForward(technicalUnitTarget);
+        assertThat(posititon.getDistance(
+                technicalUnitSource,
+                technicalUnitTarget
+        ))
+                .isEqualTo(9L);
+    }
+
+    @Test
+    void move3() {
+        posititon.add(technicalUnitSource);
+        posititon.add(technicalUnitTarget);
+        posititon.moveForward(technicalUnitTarget);
+        posititon.moveForward(technicalUnitSource);
+        assertThat(posititon.getDistance(
+                technicalUnitSource,
+                technicalUnitTarget
+        ))
+                .isEqualTo(8L);
+    }
+
+    @Test
     void init() {
         posititon.add(technicalUnitSource);
         posititon.add(technicalUnitTarget);
-
         assertThat(posititon.getDistance(
                 technicalUnitSource,
                 technicalUnitTarget

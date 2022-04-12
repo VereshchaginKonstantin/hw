@@ -1,5 +1,7 @@
 package ru.vkn.appowar;
 
+import javax.management.OperationsException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -22,7 +24,7 @@ class MoveForwardTest {
     }
 
     @Test
-    void actOnce() {
+    void actOnce() throws OperationsException {
         fightCommand.act(
                 technicalUnitSource,
                 posititon);

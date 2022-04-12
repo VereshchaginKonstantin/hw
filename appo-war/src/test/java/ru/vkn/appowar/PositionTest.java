@@ -1,10 +1,13 @@
 package ru.vkn.appowar;
 
+import javax.management.OperationsException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -14,6 +17,7 @@ class PositionTest {
     TacticalUnit technicalUnitSource;
     TacticalUnit technicalUnitTarget;
     TacticalUnit technicalUnitTarget2;
+    TacticalUnit technicalUnitFailed;
 
     @BeforeEach
     void setUp() {
@@ -25,16 +29,19 @@ class PositionTest {
         technicalUnitSource = mock(TacticalUnit.class);
         technicalUnitTarget = mock(TacticalUnit.class);
         technicalUnitTarget2 = mock(TacticalUnit.class);
+        technicalUnitFailed = mock(TacticalUnit.class);
         when(technicalUnitSource.getUser())
                 .thenAnswer(x ->  user1);
         when(technicalUnitTarget.getUser())
                 .thenAnswer(x ->  user2);
         when(technicalUnitTarget2.getUser())
                 .thenAnswer(x ->  user2);
+        when(technicalUnitFailed.getUser())
+                .thenAnswer(x ->  mock(User.class));
     }
 
     @Test
-    void add() {
+    void add() throws OperationsException  {
         posititon.add(technicalUnitSource);
         Mockito.verify(technicalUnitSource,
                         Mockito.times(1))
@@ -42,7 +49,15 @@ class PositionTest {
     }
 
     @Test
-    void move1() {
+    void initFailed() throws OperationsException  {
+        posititon.add(technicalUnitSource);
+        posititon.add(technicalUnitTarget);
+        assertThrows(OperationsException.class,
+                () -> posititon.add(technicalUnitFailed));
+    }
+
+    @Test
+    void move1() throws OperationsException  {
         posititon.add(technicalUnitSource);
         posititon.add(technicalUnitTarget);
         posititon.moveForward(technicalUnitSource);
@@ -54,7 +69,7 @@ class PositionTest {
     }
 
     @Test
-    void move2() {
+    void move2() throws OperationsException  {
         posititon.add(technicalUnitSource);
         posititon.add(technicalUnitTarget);
         posititon.moveForward(technicalUnitTarget);
@@ -66,7 +81,7 @@ class PositionTest {
     }
 
     @Test
-    void move3() {
+    void move3() throws OperationsException  {
         posititon.add(technicalUnitSource);
         posititon.add(technicalUnitTarget);
         posititon.moveForward(technicalUnitTarget);
@@ -79,7 +94,7 @@ class PositionTest {
     }
 
     @Test
-    void move4() {
+    void move4() throws OperationsException  {
         posititon.add(technicalUnitSource);
         posititon.add(technicalUnitTarget);
         posititon.add(technicalUnitTarget2);
@@ -93,7 +108,7 @@ class PositionTest {
     }
 
     @Test
-    void move5() {
+    void move5() throws OperationsException  {
         posititon.add(technicalUnitSource);
         posititon.add(technicalUnitTarget);
         posititon.add(technicalUnitTarget2);
@@ -108,7 +123,7 @@ class PositionTest {
     }
 
     @Test
-    void move6() {
+    void move6() throws OperationsException  {
         posititon.add(technicalUnitSource);
         posititon.add(technicalUnitTarget);
         posititon.add(technicalUnitTarget2);
@@ -123,7 +138,7 @@ class PositionTest {
     }
 
     @Test
-    void init() {
+    void init() throws OperationsException {
         posititon.add(technicalUnitSource);
         posititon.add(technicalUnitTarget);
         assertThat(posititon.getDistance(

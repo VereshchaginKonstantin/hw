@@ -3,6 +3,8 @@ package ru.vkn.appowar;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.management.OperationsException;
+
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
@@ -23,7 +25,7 @@ public class PosititonLinear implements Posititon {
                            User userFirst,
                            User userSecond) {
         this.userFirst = userFirst;
-        this.userSecond = userFirst;
+        this.userSecond = userSecond;
         this.distance = distance;
     }
 
@@ -34,24 +36,28 @@ public class PosititonLinear implements Posititon {
     }
 
     @Override
-    public void moveForward(TacticalUnit technicalUnit) {
+    public void moveForward(TacticalUnit technicalUnit) throws OperationsException {
         var user = technicalUnit.getUser();
-        if (userSecond.equals(user)) {
+        if (userFirst.equals(user)) {
             positions.put(technicalUnit,
                     positions.get(technicalUnit) + 1);
-        } else {
+        } else if (userSecond.equals(user)) {
             positions.put(technicalUnit,
                     positions.get(technicalUnit) - 1);
+        } else {
+            throw new OperationsException("user not found");
         }
     }
 
     @Override
-    public void add(TacticalUnit technicalUnit) {
+    public void add(TacticalUnit technicalUnit) throws OperationsException {
         var user = technicalUnit.getUser();
-        if (userSecond.equals(user)) {
+        if (userFirst.equals(user)) {
             positions.put(technicalUnit, 0L);
-        } else {
+        } else if (userSecond.equals(user)) {
             positions.put(technicalUnit, distance);
+        } else {
+            throw new OperationsException("user not found");
         }
         units.put(user, technicalUnit);
     }

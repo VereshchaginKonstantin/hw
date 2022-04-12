@@ -1,12 +1,14 @@
 package ru.vkn.appowar;
 
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
-class FightEngineTest {
+class FightCommandTest {
 
     @Test
-    void fight() {
+    void moveForward() {
         /*
          1. Написать тест на команду передвижение (ожидаем что изменяется
         позиция) саму команду пока мокнуть - и написать ассерты на
@@ -18,9 +20,20 @@ class FightEngineTest {
             реализацией класса команды (посмотреть как лучше из нее ноги вырастут
              в другие места)
          */
-        // var fightCommand = mock(FightCommand.class);
-        // var posititon = mock(Posititon.class);
-        //  var eng = new FightEngine();
-        //  eng.fight();
+        //pre
+        var fightCommand = mock(FightCommand.class);
+        var posititon = mock(Posititon.class);
+        var technicalUnitSource = mock(TacticalUnit.class);
+        var technicalUnitTarget = mock(TacticalUnit.class);
+
+        //when
+        fightCommand.act(
+                technicalUnitSource,
+                technicalUnitTarget,
+                posititon);
+
+        //then
+        assertThat(posititon.get(technicalUnitSource))
+                .isEqualTo(3L);
     }
 }

@@ -1,7 +1,7 @@
 package ru.vkn.appowar;
 
 public interface FightCommand {
-    void fight(TacticalUnit unitSource,
+    void act(TacticalUnit unitSource,
                TacticalUnit unitTarget,
                Posititon posititon);
 }

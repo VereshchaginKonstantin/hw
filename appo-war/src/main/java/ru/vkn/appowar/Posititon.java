@@ -1,5 +1,7 @@
 package ru.vkn.appowar;
 
 public interface Posititon {
-    long get(TacticalUnit technicalUnit);
+    long getDistance(TacticalUnit technicalUnitSource,
+                     TacticalUnit technicalUnitTarget);
+    void moveForvard(TacticalUnit technicalUnitSource);
 }

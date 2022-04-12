@@ -16,13 +16,17 @@ class PosititonTest {
 
     @BeforeEach
     void setUp() {
-        posititon = new PosititonLinear(10L);
+        User user1 = mock(User.class);
+        User user2 = mock(User.class);
+        posititon = new PosititonLinear(10L,
+                user1,
+                user2);
         technicalUnitSource = mock(TacticalUnit.class);
         technicalUnitTarget = mock(TacticalUnit.class);
         when(technicalUnitSource.getUser())
-                .thenAnswer(x ->  mock(User.class));
+                .thenAnswer(x ->  user1);
         when(technicalUnitTarget.getUser())
-                .thenAnswer(x ->  mock(User.class));
+                .thenAnswer(x ->  user2);
     }
 
     @Test

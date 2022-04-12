@@ -8,11 +8,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class PosititonTest {
+class PositionTest {
 
     Posititon posititon;
     TacticalUnit technicalUnitSource;
     TacticalUnit technicalUnitTarget;
+    TacticalUnit technicalUnitTarget2;
 
     @BeforeEach
     void setUp() {
@@ -23,9 +24,12 @@ class PosititonTest {
                 user2);
         technicalUnitSource = mock(TacticalUnit.class);
         technicalUnitTarget = mock(TacticalUnit.class);
+        technicalUnitTarget2 = mock(TacticalUnit.class);
         when(technicalUnitSource.getUser())
                 .thenAnswer(x ->  user1);
         when(technicalUnitTarget.getUser())
+                .thenAnswer(x ->  user2);
+        when(technicalUnitTarget2.getUser())
                 .thenAnswer(x ->  user2);
     }
 
@@ -72,6 +76,50 @@ class PosititonTest {
                 technicalUnitTarget
         ))
                 .isEqualTo(8L);
+    }
+
+    @Test
+    void move4() {
+        posititon.add(technicalUnitSource);
+        posititon.add(technicalUnitTarget);
+        posititon.add(technicalUnitTarget2);
+        posititon.moveForward(technicalUnitTarget);
+        posititon.moveForward(technicalUnitSource);
+        assertThat(posititon.getDistance(
+                technicalUnitSource,
+                technicalUnitTarget2
+        ))
+                .isEqualTo(9L);
+    }
+
+    @Test
+    void move5() {
+        posititon.add(technicalUnitSource);
+        posititon.add(technicalUnitTarget);
+        posititon.add(technicalUnitTarget2);
+        posititon.moveForward(technicalUnitTarget);
+        posititon.moveForward(technicalUnitSource);
+        assertThat(posititon.getDistance(
+                technicalUnitTarget2,
+                technicalUnitSource
+
+        ))
+                .isEqualTo(9L);
+    }
+
+    @Test
+    void move6() {
+        posititon.add(technicalUnitSource);
+        posititon.add(technicalUnitTarget);
+        posititon.add(technicalUnitTarget2);
+        posititon.moveForward(technicalUnitTarget);
+        posititon.moveForward(technicalUnitSource);
+        assertThat(posititon.getDistance(
+                technicalUnitTarget2,
+                technicalUnitTarget
+
+        ))
+                .isEqualTo(1L);
     }
 
     @Test

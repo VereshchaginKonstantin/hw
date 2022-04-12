@@ -29,8 +29,8 @@ public class PosititonLinear implements Posititon {
 
     @Override
     public long getDistance(TacticalUnit technicalUnitSource, TacticalUnit technicalUnitTarget) {
-        return positions.get(technicalUnitTarget) -
-                positions.get(technicalUnitSource);
+        return Math.abs(positions.get(technicalUnitTarget) -
+                positions.get(technicalUnitSource));
     }
 
     @Override

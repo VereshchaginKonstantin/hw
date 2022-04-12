@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class PosititonTest {
 
@@ -18,7 +19,10 @@ class PosititonTest {
         posititon = new PosititonLinear(10L);
         technicalUnitSource = mock(TacticalUnit.class);
         technicalUnitTarget = mock(TacticalUnit.class);
-
+        when(technicalUnitSource.getUser())
+                .thenAnswer(x ->  mock(User.class));
+        when(technicalUnitTarget.getUser())
+                .thenAnswer(x ->  mock(User.class));
     }
 
     @Test

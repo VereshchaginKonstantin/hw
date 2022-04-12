@@ -24,7 +24,7 @@ class MoveForwardTest {
     }
 
     @Test
-    void moveForward() {
+    void actOnce() {
         fightCommand.act(
                 technicalUnitSource,
                 posititon);

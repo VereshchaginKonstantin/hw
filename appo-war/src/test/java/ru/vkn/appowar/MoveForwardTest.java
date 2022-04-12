@@ -16,7 +16,7 @@ class MoveForwardTest {
 
     @BeforeEach
     void setUp() {
-          fightCommand = mock(FightCommand.class);
+          fightCommand = new MoveForwardCommand();
           posititon = mock(Posititon.class); // init position as 3
           technicalUnitSource = mock(TacticalUnit.class);
           technicalUnitTarget = mock(TacticalUnit.class);

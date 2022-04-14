@@ -8,7 +8,7 @@ public class CustomerService {
 
     private TreeMap<Customer, String> customers = new TreeMap<>(
             (x, y) -> {
-                if(x.getScores() > y.getScores()) {
+                if (x.getScores() > y.getScores()) {
                     return 1;
                 } else if(x.getScores() < y.getScores()) {
                     return -1;

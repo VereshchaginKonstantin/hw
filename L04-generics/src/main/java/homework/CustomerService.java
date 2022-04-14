@@ -6,9 +6,6 @@ import java.util.TreeMap;
 
 public class CustomerService {
 
-    //todo: 3. надо реализовать методы этого класса
-    //важно подобрать подходящую Map-у, посмотрите на редко используемые методы, они тут полезны
-
     private TreeMap<Customer, String> customers = new TreeMap<>(
             (x, y) -> {
                 if(x.getScores() > y.getScores()) {
@@ -21,15 +18,26 @@ public class CustomerService {
             });
 
     public Map.Entry<Customer, String> getSmallest() {
-        //Возможно, чтобы реализовать этот метод, потребуется посмотреть как Map.Entry сделан в jdk
-        return customers.firstEntry(); // это "заглушка, чтобы скомилировать"
+        var item = customers.firstEntry();
+        return clone(item);
     }
 
     public Map.Entry<Customer, String> getNext(Customer customer) {
-        return customers.higherEntry(customer);
+        var item = customers.higherEntry(customer);
+        return clone(item);
     }
 
     public void add(Customer customer, String data) {
         customers.put(customer, data);
+    }
+
+    private Map.Entry<Customer, String> clone(Map.Entry<Customer, String> item) {
+        return item != null ?
+                Map.entry(new Customer(
+                        item.getKey().getId(),
+                        item.getKey().getName(),
+                        item.getKey().getScores()),
+                item.getValue()) :
+                null;
     }
 }

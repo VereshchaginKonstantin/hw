@@ -26,6 +26,11 @@ class AttackCommandTest {
           technicalUnitTarget = mock(TacticalUnit.class);
     }
 
+    // ИТОГО -
+    // (Огневая мощь 6)
+    // * сноровка(1,75 - вероятность от 0 до 100 эффекта)
+    // *(боевой дух от 0 до 1 нормировать) = 10
+    // а ущерб пропорционально сноровке и равен = атака - броня 1 =
     @Test
     void actOnce() throws OperationsException {
         List<Unit> start = technicalUnitTarget.getUnits();

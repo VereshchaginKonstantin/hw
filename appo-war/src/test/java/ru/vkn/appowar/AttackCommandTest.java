@@ -1,5 +1,7 @@
 package ru.vkn.appowar;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.management.OperationsException;
@@ -22,8 +24,16 @@ class AttackCommandTest {
     void setUp() {
           fightCommand = new AttackCommand();
           posititon = mock(Posititon.class); // init position as 3
-          technicalUnitSource = mock(TacticalUnit.class);
-          technicalUnitTarget = mock(TacticalUnit.class);
+          technicalUnitSource = new TacticalUnitImplementation(
+                  mock(User.class),
+                  Collections.singletonList(
+                          new UnitImplementation(1L)),
+                  10L);
+          technicalUnitTarget = new TacticalUnitImplementation(
+                  mock(User.class),
+                  Collections.singletonList(
+                          new UnitImplementation(1L)),
+                  10L);
     }
 
     // ИТОГО -

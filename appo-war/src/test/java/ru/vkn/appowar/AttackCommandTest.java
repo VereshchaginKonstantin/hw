@@ -1,23 +1,26 @@
 package ru.vkn.appowar;
 
+import java.util.List;
+
 import javax.management.OperationsException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
 class AttackCommandTest {
 
-    FightCommand fightCommand;
+    BiFightCommand fightCommand;
     Posititon posititon;
     TacticalUnit technicalUnitSource;
     TacticalUnit technicalUnitTarget;
 
     @BeforeEach
     void setUp() {
-          fightCommand = new MoveBackwardCommand();
+          fightCommand = new AttackCommand();
           posititon = mock(Posititon.class); // init position as 3
           technicalUnitSource = mock(TacticalUnit.class);
           technicalUnitTarget = mock(TacticalUnit.class);
@@ -25,14 +28,19 @@ class AttackCommandTest {
 
     @Test
     void actOnce() throws OperationsException {
+        List<Unit> start = technicalUnitTarget.getUnits();
+        double hp = start.get(0).getHp();
         fightCommand.act(
                 technicalUnitSource,
+                technicalUnitTarget,
                 posititon);
+        double firePower = technicalUnitSource.getFirePower();
+
+        List<Unit> end = technicalUnitTarget.getUnits();
+        double hpEnd = start.get(0).getHp();
 
         // then
-        // Сблизить ТС 1 с другими ТС на единицу
-        // Оставить остальные ТС на прежнем расстоянии
-        Mockito.verify(posititon, Mockito.times(1))
-                .moveBackward(technicalUnitSource);
+        // Аттака - в 50 проц случаев должна быть уменьшение ХП
+        assertThat(hpEnd - hp).isEqualTo(firePower);
     }
 }

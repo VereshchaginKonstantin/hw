@@ -38,7 +38,6 @@ class AttackCommandTest {
 
         List<Unit> end = technicalUnitTarget.getUnits();
         double hpEnd = start.get(0).getHp();
-
         // then
         // Аттака - в 50 проц случаев должна быть уменьшение ХП
         assertThat(hpEnd - hp).isEqualTo(firePower);

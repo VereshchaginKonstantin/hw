@@ -8,7 +8,7 @@ import org.mockito.Mockito;
 
 import static org.mockito.Mockito.mock;
 
-class MoveForwardTest {
+class AttackCommandTest {
 
     FightCommand fightCommand;
     Posititon posititon;
@@ -17,7 +17,7 @@ class MoveForwardTest {
 
     @BeforeEach
     void setUp() {
-          fightCommand = new MoveForwardCommand();
+          fightCommand = new MoveBackwardCommand();
           posititon = mock(Posititon.class); // init position as 3
           technicalUnitSource = mock(TacticalUnit.class);
           technicalUnitTarget = mock(TacticalUnit.class);
@@ -33,6 +33,6 @@ class MoveForwardTest {
         // Сблизить ТС 1 с другими ТС на единицу
         // Оставить остальные ТС на прежнем расстоянии
         Mockito.verify(posititon, Mockito.times(1))
-                .moveForward(technicalUnitSource);
+                .moveBackward(technicalUnitSource);
     }
 }

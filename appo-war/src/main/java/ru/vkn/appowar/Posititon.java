@@ -8,4 +8,6 @@ public interface Posititon {
     void moveForward(TacticalUnit technicalUnitSource) throws OperationsException;
 
     void add(TacticalUnit technicalUnitSource) throws OperationsException;
+
+    void moveBackward(TacticalUnit technicalUnitTarget) throws OperationsException;
 }

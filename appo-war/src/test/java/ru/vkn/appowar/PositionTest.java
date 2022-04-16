@@ -137,6 +137,22 @@ class PositionTest {
                 .isEqualTo(1L);
     }
 
+
+    @Test
+    void move7() throws OperationsException  {
+        posititon.add(technicalUnitSource);
+        posititon.add(technicalUnitTarget);
+        posititon.add(technicalUnitTarget2);
+        posititon.moveBackward(technicalUnitTarget);
+        assertThat(posititon.getDistance(
+                technicalUnitSource,
+                technicalUnitTarget
+
+        ))
+                .isEqualTo(11L);
+    }
+
+
     @Test
     void init() throws OperationsException {
         posititon.add(technicalUnitSource);

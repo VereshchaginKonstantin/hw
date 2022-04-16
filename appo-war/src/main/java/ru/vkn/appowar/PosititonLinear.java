@@ -37,13 +37,22 @@ public class PosititonLinear implements Posititon {
 
     @Override
     public void moveForward(TacticalUnit technicalUnit) throws OperationsException {
+        move(technicalUnit, 1);
+    }
+
+    @Override
+    public void moveBackward(TacticalUnit technicalUnit) throws OperationsException {
+        move(technicalUnit, -1);
+    }
+
+    private void move(TacticalUnit technicalUnit, int l) throws OperationsException {
         var user = technicalUnit.getUser();
         if (userFirst.equals(user)) {
             positions.put(technicalUnit,
-                    positions.get(technicalUnit) + 1);
+                    positions.get(technicalUnit) + l);
         } else if (userSecond.equals(user)) {
             positions.put(technicalUnit,
-                    positions.get(technicalUnit) - 1);
+                    positions.get(technicalUnit) - l);
         } else {
             throw new OperationsException("user not found");
         }

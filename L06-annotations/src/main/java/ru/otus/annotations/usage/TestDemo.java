@@ -1,8 +1,6 @@
 package ru.otus.annotations.usage;
 
 
-import ru.otus.annotations.Email;
-import ru.otus.annotations.Immutable;
 import ru.otus.annotations.ImmutableEmail;
 
 public class TestDemo {

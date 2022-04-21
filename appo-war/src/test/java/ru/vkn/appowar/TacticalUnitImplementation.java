@@ -7,6 +7,6 @@ import lombok.Value;
 @Value
 public class TacticalUnitImplementation implements TacticalUnit {
     User user;
-    List<Unit> units;
+    List<UnitImplementation> units;
     double firePower;
 }

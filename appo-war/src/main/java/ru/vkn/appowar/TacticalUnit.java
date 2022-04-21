@@ -5,7 +5,7 @@ import java.util.List;
 public interface TacticalUnit {
     User getUser();
 
-    List<Unit> getUnits();
+    List<UnitImplementation> getUnits();
 
     double getFirePower();
 }

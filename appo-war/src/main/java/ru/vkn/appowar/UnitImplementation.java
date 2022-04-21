@@ -1,8 +1,13 @@
 package ru.vkn.appowar;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Value
-public class UnitImplementation implements Unit {
+@AllArgsConstructor
+@Setter
+@Getter
+public class UnitImplementation {
     double hp;
+    double defence;
 }

@@ -30,6 +30,9 @@ class AttackCommandTest {
     // а ущерб пропорционально сноровке и равен = атака - броня 1 =
     @Test
     void actOnce() throws OperationsException {
+        //TODO: 1. ущерб пропорционально сноровка
+        //TODO: 2. боевой дух
+        //TODO: 3. вероятность
         data1();
         var target = technicalUnitTarget.getUnits();
         fightCommand.act(

@@ -82,7 +82,7 @@ public class TestRunner {
                     after.get().invoke(instance);
                 }
             } catch (Exception e) {
-                return Result.EXCEPTION;
+                return Result.FAILED;
             }
         }
     }

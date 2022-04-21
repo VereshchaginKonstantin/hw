@@ -13,7 +13,7 @@ import ru.otus.annotations.Test;
 
 public class TestRunner {
 
-    public void runTests(Class<?> clazz) {
+    static public void runTests(Class<?> clazz) {
         Optional<Method> before = Arrays.stream(clazz.getDeclaredMethods())
                 .filter(x -> x.isAnnotationPresent(BeforeTest.class))
                 .findFirst();
@@ -37,7 +37,7 @@ public class TestRunner {
         print(results);
     }
 
-    private void print(List<Result> results) {
+    static private void print(List<Result> results) {
         System.out.println(
                 "Failed  "
                         + results
@@ -51,7 +51,7 @@ public class TestRunner {
                         .count());
     }
 
-    private Result runTest(
+    static private Result runTest(
             Class<?> clazz,
             Optional<Method> before,
             Optional<Method> after,

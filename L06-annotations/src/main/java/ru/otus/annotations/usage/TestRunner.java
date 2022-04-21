@@ -56,11 +56,15 @@ public class TestRunner {
             Optional<Method> before,
             Optional<Method> after,
                          Method test) {
-        Constructor<?> constructor;
         Object instance;
         try {
-            constructor = clazz.getConstructor();
-            instance = constructor.newInstance();
+            var constructor = Arrays.stream(clazz.getDeclaredConstructors()).findFirst();
+            if (constructor.isPresent()) {
+                constructor.get().setAccessible(true);
+                instance = constructor.get().newInstance();
+            } else {
+                return Result.FAILED;
+            }
         } catch (Exception e) {
             return Result.FAILED;
         }

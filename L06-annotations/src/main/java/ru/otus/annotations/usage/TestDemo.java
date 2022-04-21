@@ -11,27 +11,4 @@ public class TestDemo {
         TestRunner runner = new TestRunner();
         runner.runTests(clazz);
     }
-
-    private class TestAll {
-
-        @BeforeTest
-        public void befor() {
-
-        }
-
-        @Test
-        public void test1() {
-
-        }
-
-        @Test
-        public void test2() throws Exception {
-            throw new Exception();
-        }
-
-        @AfterTest
-        public void after() {
-
-        }
-    }
 }

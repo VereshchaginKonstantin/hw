@@ -1,5 +1,6 @@
 package ru.otus.annotations.usage;
 
+import java.io.Console;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -24,15 +25,32 @@ public class TestRunner {
         List<Result> results = new ArrayList<>();
         for (Method declaredMethod : clazz.getDeclaredMethods()) {
             if (declaredMethod.isAnnotationPresent(Test.class)) {
+                var result = runTest(clazz, before, after, declaredMethod);
                 results.add(
-                        runTest(clazz, before, after, declaredMethod)
+                        result
                 );
+                System.out.println(
+                        "Test  "
+                                + result
+                                + " "
+                                + declaredMethod.getName());
             }
         }
         print(results);
     }
 
     private void print(List<Result> results) {
+        System.out.println(
+                "Failed  "
+                        + results
+                        .stream()
+                        .filter(x -> x.equals(Result.FAILED))
+                        .count()
+                        + " OK "
+                        + results
+                        .stream()
+                        .filter(x -> x.equals(Result.OK))
+                        .count());
     }
 
     private Result runTest(

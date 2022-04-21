@@ -7,7 +7,7 @@ import ru.otus.annotations.Test;
 public class TestAll {
 
     @BeforeTest
-    public void befor() {
+    public void befor() throws Exception {
         System.out.println("befor");
     }
 
@@ -28,7 +28,7 @@ public class TestAll {
     }
 
     @AfterTest
-    public void after() {
+    public void after() throws Exception {
         System.out.println("after");
     }
 }

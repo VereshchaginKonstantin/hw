@@ -62,7 +62,7 @@ public class TestRunner {
             constructor = clazz.getConstructor();
             instance = constructor.newInstance();
         } catch (Exception e) {
-            return Result.EXCEPTION;
+            return Result.FAILED;
         }
         try {
             if (before.isPresent()) {
@@ -75,7 +75,7 @@ public class TestRunner {
             }
             return Result.OK;
         } catch (Exception e) {
-            return Result.EXCEPTION;
+            return Result.FAILED;
         } finally {
             try {
                 if (after.isPresent()) {

@@ -1,6 +1,5 @@
 package ru.vkn.appowar;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class AttackCommand implements BiFightCommand {

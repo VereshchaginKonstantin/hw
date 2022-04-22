@@ -24,21 +24,37 @@ class AttackCommandTest {
     }
 
     @Test
-    void canAttack() throws OperationsException {
-        // ущерб сноровка броня
+    void canAttack1() throws OperationsException {
         data1();
         posititon = new PosititonLinear(10,
                 technicalUnitSource.getUser(),
                 technicalUnitTarget.getUser());
         posititon.add(technicalUnitSource);
         posititon.add(technicalUnitTarget);
-        var target = technicalUnitTarget.getUnits();
         var result = fightCommand.can(
                 technicalUnitSource,
                 technicalUnitTarget,
                 posititon);
         // then
         assertThat(result).isEqualTo(false);
+    }
+
+    @Test
+    void canAttack2() throws OperationsException {
+        data1();
+        posititon = new PosititonLinear(5,
+                technicalUnitSource.getUser(),
+                technicalUnitTarget.getUser());
+        posititon.add(technicalUnitSource);
+        posititon.add(technicalUnitTarget);
+        posititon.moveForward(technicalUnitSource);
+        posititon.moveForward(technicalUnitSource);
+        var result = fightCommand.can(
+                technicalUnitSource,
+                technicalUnitTarget,
+                posititon);
+        // then
+        //TODO: assertThat(result).isEqualTo(true);
     }
 
     // ИТОГО -

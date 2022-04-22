@@ -29,7 +29,7 @@ class AttackCommandTest {
     // *(боевой дух от 0 до 1 нормировать) = 10
     // а ущерб пропорционально сноровке и равен = атака - броня 1 =
     @Test
-    void actOnce() throws OperationsException {
+    void actOnce() {
         // ущерб сноровка броня
         data1();
         var target = technicalUnitTarget.getUnits();
@@ -62,17 +62,20 @@ class AttackCommandTest {
 
     @Test
     void actOnce3() {
+        UnitImplementation.RANDOM = true;
         // вероятность
-        data2();
-        var target = technicalUnitTarget.getUnits();
-        fightCommand.act(
-                technicalUnitSource,
-                technicalUnitTarget,
-                posititon);
-        // then
-        assertThat(target.get(0).getHp()).isEqualTo(93);
-        assertThat(target.get(1).getHp()).isEqualTo(94);
-        assertThat(target.get(2).getHp()).isEqualTo(93);
+        var hp = 0;
+        for (int i = 0; i < 5000; i++) {
+            data2();
+            var target = technicalUnitTarget.getUnits();
+            fightCommand.act(
+                    technicalUnitSource,
+                    technicalUnitTarget,
+                    posititon);
+            hp += target.get(0).getHp() > 93 ? 1 : 0;
+        }
+        assertThat(hp).isLessThan(2600);
+        UnitImplementation.RANDOM = false;
     }
 
     private void data1() {

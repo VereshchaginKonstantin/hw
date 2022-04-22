@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class UnitImplementation {
-    double hp;
-    double defence;
-    double skill;
+    int hp;
+    int defence;
+    int skill;
 }

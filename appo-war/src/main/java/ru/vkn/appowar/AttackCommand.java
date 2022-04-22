@@ -7,24 +7,15 @@ public class AttackCommand implements BiFightCommand {
     @Override
     public void act(TacticalUnit unitSource, TacticalUnit unitTarget, Posititon posititon) {
         var fp = unitSource.getFirePower();
+        var fpPerUnit = fp / unitTarget.getUnits().size();
         var units = unitTarget.getUnits()
                 .stream().collect(Collectors.toList());
-        for (var unit : units
-                .stream().sorted(
-                        (x,y) ->
-                                (x.getSkill() > y.getSkill()) ? -1 :
-                                        (x.getSkill() > y.getSkill())
-                        ? 1 :0
-                ).collect(Collectors.toList())) {
-            if (units.size() > 1) {
-                var allSkill = getSum(units);
-                var fpCurrent = fp * (1 - (unit.getSkill() / allSkill));
-                units.remove(unit);
-                fp -= fpCurrent;
-                unit.setHp(unit.getHp() - fpCurrent + unit.getDefence());
-            } else {
-                unit.setHp(unit.getHp() - fp + unit.getDefence());
-            }
+        for (var unit : units) {
+                unit.setHp(unit.getHp()
+                        - (int) (fpPerUnit)
+                        + (int) (unit.getDefence() *
+                        (1 - 10.0 / (10.0 + (double) unit.getSkill())))
+                );
         }
     }
 

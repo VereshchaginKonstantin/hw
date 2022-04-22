@@ -10,4 +10,5 @@ import lombok.Setter;
 public class UnitImplementation {
     double hp;
     double defence;
+    double skill;
 }

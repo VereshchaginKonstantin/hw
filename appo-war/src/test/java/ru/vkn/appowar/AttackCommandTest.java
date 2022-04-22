@@ -30,7 +30,7 @@ class AttackCommandTest {
     // а ущерб пропорционально сноровке и равен = атака - броня 1 =
     @Test
     void actOnce() throws OperationsException {
-        // ущерб сноровка броня(+)
+        // ущерб сноровка броня
         data1();
         var target = technicalUnitTarget.getUnits();
         fightCommand.act(
@@ -46,8 +46,23 @@ class AttackCommandTest {
 
     @Test
     void actOnce2() {
-        // TODO: 2. боевой дух
-        // TODO: 3. вероятность
+        // боевой дух
+        data2();
+        var target = technicalUnitTarget.getUnits();
+        fightCommand.act(
+                technicalUnitSource,
+                technicalUnitTarget,
+                posititon);
+        // then
+        assertThat(target.get(0).getHp()).isEqualTo(93);
+        assertThat(target.get(1).getHp()).isEqualTo(94);
+        assertThat(target.get(2).getHp()).isEqualTo(93);
+    }
+
+
+    @Test
+    void actOnce3() {
+        // вероятность
         data2();
         var target = technicalUnitTarget.getUnits();
         fightCommand.act(

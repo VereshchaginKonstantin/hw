@@ -74,7 +74,7 @@ class AttackCommandTest {
                     posititon);
             hp += target.get(0).getHp() > 93 ? 1 : 0;
         }
-        assertThat(hp).isLessThan(2600);
+        assertThat(hp).isBetween(2000, 2600);
         UnitImplementation.RANDOM = false;
     }
 

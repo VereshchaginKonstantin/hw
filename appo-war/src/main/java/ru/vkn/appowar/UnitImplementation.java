@@ -14,16 +14,16 @@ public class UnitImplementation {
     int power;
     int spirit;
 
-    public double getRealDefence() {
-        return getDefence() * getSkillCoef() * getSpiritCoef();
+    public int getRealDefence() {
+        return (int) Math.ceil(getDefence() * getSkillCoef() * getSpiritCoef());
     }
 
-    public double getRealPower() {
-        return getPower() * getSkillCoef() * getSpiritCoef();
+    public int getRealPower() {
+        return (int) Math.ceil(getPower() * getSkillCoef() * getSpiritCoef());
     }
 
     private double getSkillCoef() {
-        return 1 - 10.0 / (10.0 + (double) getSkill());
+        return getSkill() / 100.0;
     }
 
     private double getSpiritCoef() {

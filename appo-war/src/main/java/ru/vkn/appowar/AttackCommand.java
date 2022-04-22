@@ -13,7 +13,7 @@ public class AttackCommand implements BiFightCommand {
         for (var unit : units) {
                 unit.setHp(unit.getHp()
                         - (int) (fpPerUnit)
-                        + (int) (unit.getRealDefence())
+                        + (unit.getRealDefence())
                 );
         }
     }

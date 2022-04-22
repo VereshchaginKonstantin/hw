@@ -14,6 +14,7 @@ class TacticalUnitTest {
 
     @Test
     void testRealPower2() {
+        // TODO: 2. защита
         var unit = new UnitImplementation(100, 7, 100, 15, 2);
         assertThat(unit.getRealPower()).isEqualTo(18);
     }

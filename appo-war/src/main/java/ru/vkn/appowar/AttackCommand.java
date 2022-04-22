@@ -16,4 +16,9 @@ public class AttackCommand implements BiFightCommand {
                 );
         }
     }
+
+    @Override
+    public boolean can(TacticalUnit technicalUnitSource, TacticalUnit technicalUnitTarget, Posititon posititon) {
+        return false;
+    }
 }

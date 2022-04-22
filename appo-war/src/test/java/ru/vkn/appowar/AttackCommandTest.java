@@ -23,6 +23,24 @@ class AttackCommandTest {
           posititon = mock(Posititon.class); // init position as 3
     }
 
+    @Test
+    void canAttack() throws OperationsException {
+        // ущерб сноровка броня
+        data1();
+        posititon = new PosititonLinear(10,
+                technicalUnitSource.getUser(),
+                technicalUnitTarget.getUser());
+        posititon.add(technicalUnitSource);
+        posititon.add(technicalUnitTarget);
+        var target = technicalUnitTarget.getUnits();
+        var result = fightCommand.can(
+                technicalUnitSource,
+                technicalUnitTarget,
+                posititon);
+        // then
+        assertThat(result).isEqualTo(false);
+    }
+
     // ИТОГО -
     // (Огневая мощь 6)
     // * сноровка(1,75 - вероятность от 0 до 100 эффекта)

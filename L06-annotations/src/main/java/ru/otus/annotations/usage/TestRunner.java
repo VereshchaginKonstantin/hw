@@ -58,13 +58,8 @@ public class TestRunner {
                          Method test) {
         Object instance;
         try {
-            var constructor = Arrays.stream(clazz.getDeclaredConstructors()).findFirst();
-            if (constructor.isPresent()) {
-                constructor.get().setAccessible(true);
-                instance = constructor.get().newInstance();
-            } else {
-                return Result.FAILED;
-            }
+            var constructor = clazz.getConstructor();
+                instance = constructor.newInstance();
         } catch (Exception e) {
             return Result.FAILED;
         }

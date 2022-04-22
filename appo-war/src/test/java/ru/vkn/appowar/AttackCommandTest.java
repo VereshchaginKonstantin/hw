@@ -30,9 +30,7 @@ class AttackCommandTest {
     // а ущерб пропорционально сноровке и равен = атака - броня 1 =
     @Test
     void actOnce() throws OperationsException {
-        // TODO: 1. ущерб пропорционально сноровка
-        // TODO: 2. боевой дух
-        // TODO: 3. вероятность
+        // ущерб сноровка броня(+)
         data1();
         var target = technicalUnitTarget.getUnits();
         fightCommand.act(
@@ -41,14 +39,13 @@ class AttackCommandTest {
                 posititon);
         // then
         // Аттака - в 50 проц случаев должна быть уменьшение ХП / 10 3 7
-        assertThat(target.get(0).getHp()).isEqualTo(94);
-        assertThat(target.get(1).getHp()).isEqualTo(92);
-        assertThat(target.get(2).getHp()).isEqualTo(90);
+        assertThat(target.get(0).getHp()).isEqualTo(95);
+        assertThat(target.get(1).getHp()).isEqualTo(95);
+        assertThat(target.get(2).getHp()).isEqualTo(95);
     }
 
     @Test
     void actOnce2() throws OperationsException {
-        // TODO: 1. ущерб пропорционально сноровка
         // TODO: 2. боевой дух
         // TODO: 3. вероятность
         data2();
@@ -67,16 +64,14 @@ class AttackCommandTest {
         technicalUnitSource = new TacticalUnitImplementation(
                 mock(User.class),
                 List.of(
-                        new UnitImplementation(100, 7, 3),
-                        new UnitImplementation(100, 3, 7)),
-                30L);
+                        new UnitImplementation(100, 7, 10, 15, 1),
+                        new UnitImplementation(100, 3, 10, 15, 1)));
         technicalUnitTarget = new TacticalUnitImplementation(
                 mock(User.class),
                 List.of(
-                        new UnitImplementation(100, 10, 7),
-                        new UnitImplementation(100, 10, 3),
-                        new UnitImplementation(100, 10, 1)),
-                10L);
+                        new UnitImplementation(100, 10, 7, 1, 1),
+                        new UnitImplementation(100, 10, 3, 1, 1),
+                        new UnitImplementation(100, 10, 1, 1, 1)));
     }
 
 
@@ -84,15 +79,13 @@ class AttackCommandTest {
         technicalUnitSource = new TacticalUnitImplementation(
                 mock(User.class),
                 List.of(
-                        new UnitImplementation(100, 7, 3),
-                        new UnitImplementation(100, 3, 7)),
-                30L);
+                        new UnitImplementation(100, 7, 3, 1, 1),
+                        new UnitImplementation(100, 3, 7, 1, 1)));
         technicalUnitTarget = new TacticalUnitImplementation(
                 mock(User.class),
                 List.of(
-                        new UnitImplementation(100, 10, 7),
-                        new UnitImplementation(100, 10, 3),
-                        new UnitImplementation(100, 10, 1)),
-                10L);
+                        new UnitImplementation(100, 10, 7, 1, 1),
+                        new UnitImplementation(100, 10, 3, 1, 1),
+                        new UnitImplementation(100, 10, 1, 1, 1)));
     }
 }

@@ -13,14 +13,8 @@ public class AttackCommand implements BiFightCommand {
         for (var unit : units) {
                 unit.setHp(unit.getHp()
                         - (int) (fpPerUnit)
-                        + (int) (unit.getDefence() *
-                        (1 - 10.0 / (10.0 + (double) unit.getSkill())))
+                        + (int) (unit.getRealDefence())
                 );
         }
-    }
-
-    private double getSum(List<UnitImplementation> unitTarget) {
-        return unitTarget.stream().map(x -> x.getSkill())
-                .mapToDouble(x -> x).sum();
     }
 }

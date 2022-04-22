@@ -8,5 +8,12 @@ import lombok.Value;
 public class TacticalUnitImplementation implements TacticalUnit {
     User user;
     List<UnitImplementation> units;
-    double firePower;
+
+    @Override
+    public double getFirePower() {
+        return units
+                .stream()
+                .mapToDouble(x -> x.getRealPower())
+                .sum();
+    }
 }

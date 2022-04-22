@@ -12,15 +12,19 @@ public class AttackCommand implements BiFightCommand {
         for (var unit : units
                 .stream().sorted(
                         (x,y) ->
-                                (x.getSkill() > y.getSkill()) ? 1 :
+                                (x.getSkill() > y.getSkill()) ? -1 :
                                         (x.getSkill() > y.getSkill())
-                        ? -1 :0
+                        ? 1 :0
                 ).collect(Collectors.toList())) {
-            var allSkill = getSum(units);
-            var fpCurrent = fp * (1 - (unit.getSkill() / allSkill));
-            units.remove(unit);
-            fp -= fpCurrent;
-            unit.setHp(unit.getHp() - fpCurrent + unit.getDefence());
+            if (units.size() > 1) {
+                var allSkill = getSum(units);
+                var fpCurrent = fp * (1 - (unit.getSkill() / allSkill));
+                units.remove(unit);
+                fp -= fpCurrent;
+                unit.setHp(unit.getHp() - fpCurrent + unit.getDefence());
+            } else {
+                unit.setHp(unit.getHp() - fp + unit.getDefence());
+            }
         }
     }
 

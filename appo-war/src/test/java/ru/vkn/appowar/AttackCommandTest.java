@@ -39,11 +39,13 @@ class AttackCommandTest {
                 posititon);
         // then
         // Аттака - в 50 проц случаев должна быть уменьшение ХП / 10 3 7
-        // assertThat(target.get(0).getHp()).isEqualTo(95);
+        assertThat(target.get(0).getHp()).isEqualTo(93);
+        assertThat(target.get(1).getHp()).isEqualTo(93);
+        assertThat(target.get(2).getHp()).isEqualTo(93);
     }
 
     @Test
-    void actOnce2() throws OperationsException {
+    void actOnce2() {
         // TODO: 2. боевой дух
         // TODO: 3. вероятность
         data2();
@@ -53,21 +55,23 @@ class AttackCommandTest {
                 technicalUnitTarget,
                 posititon);
         // then
-        // assertThat(target.get(0).getHp()).isEqualTo(94);
+        assertThat(target.get(0).getHp()).isEqualTo(93);
+        assertThat(target.get(1).getHp()).isEqualTo(94);
+        assertThat(target.get(2).getHp()).isEqualTo(93);
     }
 
     private void data1() {
         technicalUnitSource = new TacticalUnitImplementation(
                 mock(User.class),
                 List.of(
-                        new UnitImplementation(100, 7, 10, 15, 1),
-                        new UnitImplementation(100, 3, 10, 15, 1)));
+                        new UnitImplementation(100, 7, 100, 15, 1),
+                        new UnitImplementation(100, 3, 100, 15, 1)));
         technicalUnitTarget = new TacticalUnitImplementation(
                 mock(User.class),
                 List.of(
-                        new UnitImplementation(100, 10, 7, 1, 1),
-                        new UnitImplementation(100, 10, 3, 1, 1),
-                        new UnitImplementation(100, 10, 1, 1, 1)));
+                        new UnitImplementation(100, 10, 30, 1, 1),
+                        new UnitImplementation(100, 10, 30, 1, 1),
+                        new UnitImplementation(100, 10, 30, 1, 1)));
     }
 
 
@@ -75,13 +79,13 @@ class AttackCommandTest {
         technicalUnitSource = new TacticalUnitImplementation(
                 mock(User.class),
                 List.of(
-                        new UnitImplementation(100, 7, 3, 1, 1),
-                        new UnitImplementation(100, 3, 7, 1, 1)));
+                        new UnitImplementation(100, 7, 100, 15, 1),
+                        new UnitImplementation(100, 3, 100, 15, 1)));
         technicalUnitTarget = new TacticalUnitImplementation(
                 mock(User.class),
                 List.of(
-                        new UnitImplementation(100, 10, 7, 1, 1),
-                        new UnitImplementation(100, 10, 3, 1, 1),
-                        new UnitImplementation(100, 10, 1, 1, 1)));
+                        new UnitImplementation(100, 10, 30, 1, 1),
+                        new UnitImplementation(100, 10, 30, 1, 3),
+                        new UnitImplementation(100, 10, 30, 1, 1)));
     }
 }

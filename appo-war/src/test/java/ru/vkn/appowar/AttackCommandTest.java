@@ -58,7 +58,6 @@ class AttackCommandTest {
                 technicalUnitTarget,
                 posititon);
         // then
-        // Аттака - в 50 проц случаев должна быть уменьшение ХП / 10 3 7
         assertThat(target.get(0).getHp()).isEqualTo(94);
         assertThat(target.get(1).getHp()).isEqualTo(92);
         assertThat(target.get(2).getHp()).isEqualTo(92);

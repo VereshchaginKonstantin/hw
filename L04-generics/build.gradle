@@ -1,13 +1,11 @@
 plugins {
     id 'java'
-    id 'checkstyle'
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 dependencies {
-    implementation 'org.apache.commons:commons-lang3:3.0'
     testImplementation ('org.junit.jupiter:junit-jupiter-api')
     testImplementation ('org.junit.jupiter:junit-jupiter-engine')
     testImplementation ('org.assertj:assertj-core')
@@ -27,5 +25,3 @@ tasks.withType(JavaCompile) {
         encoding = 'UTF-8'
     }
 }
-
-tasks.build.dependsOn tasks.check

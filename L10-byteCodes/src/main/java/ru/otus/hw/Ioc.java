@@ -3,6 +3,8 @@ package ru.otus.hw;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 
 class Ioc {
@@ -25,7 +27,10 @@ class Ioc {
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            System.out.println("invoking method:" + method);
+            System.out.println("executed method: " +
+                    method + ", param:" +
+                    Arrays.stream(args).map(x -> x.toString())
+                            .collect(Collectors.toList()));
             return method.invoke(myClass, args);
         }
 

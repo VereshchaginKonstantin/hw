@@ -30,7 +30,8 @@ class Ioc {
             if (isAnnotationPresent(method)) {
                 System.out.println("executed method: " +
                         method + ", param:" +
-                        Arrays.stream(args).map(x -> x.toString())
+                        Arrays.stream(args)
+                                .map(Object::toString)
                                 .collect(Collectors.toList()));
             }
             return method.invoke(myClass, args);

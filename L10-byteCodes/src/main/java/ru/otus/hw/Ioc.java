@@ -4,6 +4,8 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -20,6 +22,8 @@ class Ioc {
 
     static class DemoInvocationHandler implements InvocationHandler {
         private final MyClassInterface myClass;
+        private final Map<Method, Boolean> isAnnotationPresentFlags = new HashMap<>();
+
 
         DemoInvocationHandler(MyClassInterface myClass) {
             this.myClass = myClass;
@@ -37,13 +41,22 @@ class Ioc {
             return method.invoke(myClass, args);
         }
 
-        private boolean isAnnotationPresent(Method method) throws NoSuchMethodException {
-            return myClass
-                    .getClass()
-                    .getMethod(
-                            method.getName(),
-                            method.getParameterTypes())
-                    .isAnnotationPresent(Log.class);
+        private Boolean isAnnotationPresent(Method method) {
+            return isAnnotationPresentFlags
+                    .computeIfAbsent(method, m ->  isAnnotationPresentCompute(m));
+        }
+
+        private Boolean isAnnotationPresentCompute(Method method) {
+            try {
+                return myClass
+                        .getClass()
+                        .getMethod(
+                                method.getName(),
+                                method.getParameterTypes())
+                        .isAnnotationPresent(Log.class);
+            } catch (NoSuchMethodException e) {
+                return null;
+            }
         }
 
         @Override

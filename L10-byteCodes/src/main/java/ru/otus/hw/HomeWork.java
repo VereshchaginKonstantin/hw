@@ -8,7 +8,9 @@ class HomeWork {
     public static void main(String[] args) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         new TestLogging().calculation(1, 2);
         MyClassInterface myClass = Ioc.createMyClass();
-        myClass.calculation(1, 2);
-        myClass.calculation(1);
+        for (int i = 0; i < 10; i++) {
+            myClass.calculation(1, 2);
+            myClass.calculation(1);
+        }
     }
 }

@@ -4,8 +4,8 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 
@@ -20,10 +20,27 @@ class Ioc {
                 new Class<?>[]{MyClassInterface.class}, handler);
     }
 
+    static class AnnotationPresentsInfoStorage {
+        private final static Map<Class<?>, AnnotationPresentsInfo> annotationPresentsInfos
+                = new ConcurrentHashMap<>();
+
+        public static Boolean isAnnotationPresent(Class<?> clazz, Method method) {
+            return annotationPresentsInfos
+                    .computeIfAbsent(clazz,
+                            c -> createAnnotationPresentsInfos(c))
+                    .isAnnotationPresent(method);
+        }
+
+        private static AnnotationPresentsInfo createAnnotationPresentsInfos(Class<?> clazz) {
+            return new AnnotationPresentsInfo(clazz);
+        }
+
+    }
+
     static class DemoInvocationHandler implements InvocationHandler {
         private final MyClassInterface myClass;
-        private final Map<Method, Boolean> isAnnotationPresentFlags = new HashMap<>();
-
+        // вызывается один раз
+        private final static Class<MyClassInterface> myClassT = MyClassInterface.class;
 
         DemoInvocationHandler(MyClassInterface myClass) {
             this.myClass = myClass;
@@ -31,7 +48,7 @@ class Ioc {
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            if (isAnnotationPresent(method)) {
+            if (AnnotationPresentsInfoStorage.isAnnotationPresent(myClassT, method)) {
                 System.out.println("executed method: " +
                         method + ", param:" +
                         Arrays.stream(args)
@@ -41,23 +58,8 @@ class Ioc {
             return method.invoke(myClass, args);
         }
 
-        private Boolean isAnnotationPresent(Method method) {
-            return isAnnotationPresentFlags
-                    .computeIfAbsent(method, m ->  isAnnotationPresentCompute(m));
-        }
 
-        private Boolean isAnnotationPresentCompute(Method method) {
-            try {
-                return myClass
-                        .getClass()
-                        .getMethod(
-                                method.getName(),
-                                method.getParameterTypes())
-                        .isAnnotationPresent(Log.class);
-            } catch (NoSuchMethodException e) {
-                return null;
-            }
-        }
+
 
         @Override
         public String toString() {

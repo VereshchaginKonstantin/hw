@@ -1,12 +1,8 @@
 package ru.otus.hw;
 
-import java.beans.ConstructorProperties;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import lombok.AllArgsConstructor;
 
 class AnnotationPresentsInfo {
 

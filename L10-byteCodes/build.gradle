@@ -8,6 +8,7 @@ targetCompatibility = JavaVersion.VERSION_17
 
 dependencies {
     implementation 'org.ow2.asm:asm-commons'
+    implementation 'org.projectlombok:lombok:1.18.20'
 }
 
 task shadowSetterDemo(type: Jar, dependsOn: shadowJar) {

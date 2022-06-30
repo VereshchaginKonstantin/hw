@@ -13,6 +13,7 @@ public class ATMSlot {
     }
 
     public List<Banknote> getLowerBound(long amount) {
+        // TODO
         return Collections.emptyList();
     }
 

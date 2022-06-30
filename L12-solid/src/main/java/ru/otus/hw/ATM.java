@@ -18,23 +18,26 @@ public class ATM {
     public List<Banknote> get(long amount) {
         List<Banknote> banknotes = new ArrayList<>();
         for (DenominationType value : Arrays.stream(DenominationType.values())
-                .sorted(Comparator.comparingLong(x -> x.value))
+                .sorted(Comparator.reverseOrder())
                 .collect(Collectors.toList())) {
-            banknotes.addAll(slots
-                        .get(value)
-                        .getLowerBound(amount));
+            banknotes.add(slots
+                        .computeIfAbsent(value, x -> new ATMSlot(x))
+                        .getLowerBound(amount - size(banknotes)));
             if (amount - size(banknotes) == 0) {
-                return banknotes;
+                slots.values().forEach(x -> x.commit());
+                return banknotes
+                        .stream()
+                        .filter(x -> x.count() != 0)
+                        .collect(Collectors.toList());
             }
         }
-        throw new RuntimeException();
+        throw new RuntimeException("Not enough money");
     }
 
     private long size(List<Banknote> banknotes) {
         return banknotes.stream()
-                .map(x -> x.count() * x.type().value)
-                .reduce((x, y) -> x + x)
-                .get();
+                .mapToLong(x -> x.getAmount())
+                .sum();
     }
 }
 

@@ -6,7 +6,7 @@ public enum DenominationType {
     FIFTY(50),
     HUNDRED(100);
 
-    int value;
+    final int value;
 
     DenominationType(int i) {
         value = i;

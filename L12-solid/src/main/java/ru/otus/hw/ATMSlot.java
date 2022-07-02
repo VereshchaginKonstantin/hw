@@ -7,8 +7,8 @@ import java.util.List;
 public class ATMSlot {
 
     long count;
-    DenominationType type;
-    List<Banknote> notCommited = new ArrayList<>();
+    private final DenominationType type;
+    private final List<Banknote> notCommited = new ArrayList<>();
 
     public ATMSlot(DenominationType type) {
         this.type = type;
@@ -16,6 +16,10 @@ public class ATMSlot {
 
     public void commit() {
         notCommited.forEach(x -> count -= x.count());
+        notCommited.clear();
+    }
+
+    public void rollback() {
         notCommited.clear();
     }
 

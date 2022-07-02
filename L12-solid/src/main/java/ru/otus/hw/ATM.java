@@ -22,8 +22,8 @@ public class ATM {
                 .collect(Collectors.toList())) {
             banknotes.add(slots
                         .computeIfAbsent(value, x -> new ATMSlot(x))
-                        .getLowerBound(amount - size(banknotes)));
-            if (amount - size(banknotes) == 0) {
+                        .getLowerBound(amount - balance(banknotes)));
+            if (amount - balance(banknotes) == 0) {
                 slots.values().forEach(x -> x.commit());
                 return banknotes
                         .stream()
@@ -31,10 +31,11 @@ public class ATM {
                         .collect(Collectors.toList());
             }
         }
+        slots.values().forEach(x -> x.rollback());
         throw new RuntimeException("Not enough money");
     }
 
-    private long size(List<Banknote> banknotes) {
+    private long balance(List<Banknote> banknotes) {
         return banknotes.stream()
                 .mapToLong(x -> x.getAmount())
                 .sum();
